@@ -7,7 +7,7 @@ import urllib.request
 import aiocoap.resource as resource
 import aiocoap
 import RPi.GPIO as GPIO
-import playsound
+from pygame import mixer
 
 GPIO.setmode(GPIO.BOARD)
 
@@ -59,10 +59,13 @@ class AlarmControl(resource.Resource):
         if request.payload == b"on":
             print("Sound on!")
             self.sound_on = True
-            playsound.playsound('/path/to/filename.mp3', True)
+            mixer.init()
+            mixer.music.load("alarm.mp3")
+            mixer.music.play()
+
         else:
             print("Sound off!")
-            GPIO.output(11, GPIO.LOW)
+            mixer.music.stop()
             self.sound_on = False
 
 
@@ -82,6 +85,7 @@ def main():
                       resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('airquality',), AirQualityResource())
     root.add_resource(('led',), LightControl())
+    root.add_resource(('alarm',), AlarmControl())
 
     asyncio.Task(aiocoap.Context.create_server_context(root))
 

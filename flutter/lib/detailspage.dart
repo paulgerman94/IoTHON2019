@@ -51,7 +51,6 @@ class DetailsPageState extends State<DetailsPage> {
         humidity = res.humidity;
         dominant_pollutant = res.airQuality.dominantPollutant;
         air_condition = res.airQuality.type;
-
       });
     });
   }
@@ -330,15 +329,16 @@ class DetailsPageState extends State<DetailsPage> {
                         Text(
                           air_condition,
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 28.0,
+                            color: Colors.black,
+                            fontSize: 28.0,
                           ),
                         ),
                         Text(
                           dominant_pollutant,
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 28.0,),
+                            color: Colors.black,
+                            fontSize: 28.0,
+                          ),
                         ),
                       ]),
                 ),

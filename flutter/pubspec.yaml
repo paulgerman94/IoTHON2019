@@ -17,6 +17,8 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  responsive_container:
+  charts_flutter: ^0.6.0
   http: ^0.12.0+2
   google_maps_flutter: ^0.5.11+1
   font_awesome_flutter: ^8.4.0

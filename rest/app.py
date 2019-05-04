@@ -37,6 +37,16 @@ def location():
     return jsonify(resp)
 
 
+@app.route('/location_all')
+def all_location():
+    place = request.args.get('lat')
+
+    resp_ericsson = ericsson.location_data()
+    resp = nokia.location_all_data(place, resp_ericsson)
+
+    return jsonify(resp)
+
+
 asyncio.get_event_loop().run_until_complete(coap.coap_service())
 
 if __name__ == '__main__':

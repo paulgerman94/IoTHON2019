@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:iothon2019/charts.dart';
 import 'package:iothon2019/controls.dart';
 import 'package:iothon2019/detailspage.dart';
 
@@ -36,7 +37,7 @@ class HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ControlsPage()),
+                      MaterialPageRoute(builder: (context) => ChartsPage("Otaniemi")),
                     );
                   }), // IconButton
             ], // <Widget>[]

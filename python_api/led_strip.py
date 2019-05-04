@@ -19,4 +19,4 @@ while True:
 
     print(url)
     contents = urllib.request.urlopen(url).read()
-    time.sleep(5)
+    time.sleep(2)

@@ -80,6 +80,12 @@ class AlarmControl(resource.Resource):
         self.sound_on = False
         super().__init__()
 
+    async def render_get(self, request):
+        if self.sound_on:
+            return aiocoap.Message(payload=b"on")
+        else:
+            return aiocoap.Message(payload=b"off")
+
     async def render_put(self, request):
         if request.payload == b"on":
             print("Sound on!")

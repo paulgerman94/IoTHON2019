@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:iothon2019/controls.dart';
 import 'package:iothon2019/detailspage.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,28 +24,30 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      /*
-      appBar: AppBar(
-        leading: IconButton(icon: Icon(FontAwesomeIcons.arrowLeft), onPressed: (){
-
-        }), //IconButton
-        title: Text("Otaniemi"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(FontAwesomeIcons.search),
-            onPressed: (){
-            }),// IconButton
-          ], // <Widget>[]
-      ), //AppBar
-    */
-      body: Stack(
-        children: <Widget>[
-          _googlemap(context),
-          _buildContainer(), // Horizontal Scroll
-        ], // <Widget>[]
-      ), //Scaffold
-    );
+    return new WillPopScope(
+        onWillPop: (){},
+        child: Scaffold(
+          appBar: AppBar(
+            //IconButton
+            title: Text("Otaniemi"),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(FontAwesomeIcons.bars),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ControlsPage()),
+                    );
+                  }), // IconButton
+            ], // <Widget>[]
+          ), //AppBar
+          body: Stack(
+            children: <Widget>[
+              _googlemap(context),
+              _buildContainer(), // Horizontal Scroll
+            ], // <Widget>[]
+          ), //Scaffold
+        ));
   }
 
   Widget _googlemap(BuildContext context) {
@@ -82,7 +86,6 @@ class HomePageState extends State<HomePage> {
                 icon: BitmapDescriptor.defaultMarkerWithHue(
                     BitmapDescriptor.hueRed),
                 onTap: () {
-                  Navigator.of(context).pop();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -98,7 +101,6 @@ class HomePageState extends State<HomePage> {
                 icon: BitmapDescriptor.defaultMarkerWithHue(
                     BitmapDescriptor.hueRed),
                 onTap: () {
-                  Navigator.of(context).pop();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -116,7 +118,6 @@ class HomePageState extends State<HomePage> {
                 icon: BitmapDescriptor.defaultMarkerWithHue(
                     BitmapDescriptor.hueBlue),
                 onTap: () {
-                  Navigator.of(context).pop();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -132,7 +133,6 @@ class HomePageState extends State<HomePage> {
                 icon: BitmapDescriptor.defaultMarkerWithHue(
                     BitmapDescriptor.hueBlue),
                 onTap: () {
-                  Navigator.of(context).pop();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -148,7 +148,6 @@ class HomePageState extends State<HomePage> {
                 icon: BitmapDescriptor.defaultMarkerWithHue(
                     BitmapDescriptor.hueBlue),
                 onTap: () {
-                  Navigator.of(context).pop();
                   Navigator.push(
                       context,
                       MaterialPageRoute(

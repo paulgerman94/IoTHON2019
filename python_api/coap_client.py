@@ -18,7 +18,7 @@ async def main():
     # else:
     #     print('Result: %s\n%r'%(response.code, response.payload))
 
-    request = Message(code=PUT, uri='coap://10.84.109.140/alarm', payload=b'off')
+    request = Message(code=GET, uri='coap://10.84.109.140/led')
 
     try:
         response = await protocol.request(request).response

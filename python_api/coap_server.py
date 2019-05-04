@@ -7,6 +7,8 @@ import urllib.request
 import aiocoap.resource as resource
 import aiocoap
 import RPi.GPIO as GPIO
+import playsound
+
 GPIO.setmode(GPIO.BOARD)
 
 GPIO.setup(11, GPIO.OUT)
@@ -32,10 +34,8 @@ class LightControl(resource.Resource):
     def __init__(self):
         self.light_on = False
         super().__init__()
-        print("initializing!")
 
     async def render_put(self, request):
-        print("ana are multe mere")
         if request.payload == b"on":
             print("Light on!")
             self.light_on = True
@@ -46,9 +46,29 @@ class LightControl(resource.Resource):
             GPIO.output(11, GPIO.LOW)
             self.light_on = False
 
+
         return aiocoap.Message(code=aiocoap.CHANGED, payload=request.payload)
 
-# logging setup
+
+class AlarmControl(resource.Resource):
+    def __init__(self):
+        self.sound_on = False
+        super().__init__()
+
+    async def render_put(self, request):
+        if request.payload == b"on":
+            print("Sound on!")
+            self.sound_on = True
+            playsound.playsound('/path/to/filename.mp3', True)
+        else:
+            print("Sound off!")
+            GPIO.output(11, GPIO.LOW)
+            self.sound_on = False
+
+
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=request.payload)
+
+# logging setupppp
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("coap-server").setLevel(logging.DEBUG)

@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:iothon2019/server/model.dart';
 
 class ServiceAPI {
-  String iothonHost = "35.228.63.92:5000";
+  String iothonHost = "10.84.109.125:5000";
 
   Future<LightPole> getLocationData(double lat, double long) async {
     var queryParameters = {'lat': lat.toString(), 'long': long.toString()};

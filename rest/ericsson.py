@@ -29,7 +29,7 @@ client = init_influx()
 
 def save_air_pollution(data):
     json_body = prepare_air_pollution_json(data)
-    print("Write points: {0}".format(json_body))
+    # print("Write points: {0}".format(json_body))
     client.write_points(json_body)
 
 

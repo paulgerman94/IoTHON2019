@@ -12,7 +12,7 @@ import ericsson
 import nokia
 
 app = Flask(__name__)
-
+loop = asyncio.get_event_loop()
 
 @app.route('/')
 def hello_world():
@@ -50,7 +50,12 @@ def all_location():
     return jsonify(resp)
 
 
-asyncio.get_event_loop().run_until_complete(coap.coap_service())
+@app.route('/switch_light', methods = ['PUT'])
+def switch_light():
+    loop.run_until_complete(coap.coap_switch_light())
+    return ''
+
+loop.run_until_complete(coap.coap_service())
 
 if __name__ == '__main__':
     app.run()

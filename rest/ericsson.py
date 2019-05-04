@@ -78,7 +78,7 @@ def prepare_air_pollen_json(data):
     return json_body
 
 
-def location_data():
+def location_pollution_data():
     database = config.ericsson_schema
     table = config.ericsson_air_pollution
     client.switch_database(database)
@@ -93,3 +93,20 @@ def location_data():
             dominant_pollutant = el[1]
 
     return {"type": type, "dominant_pollutant": dominant_pollutant}
+
+
+def location_pollen_data():
+    database = config.ericsson_schema
+    table = config.ericsson_air_pollen
+    client.switch_database(database)
+    result = client.query(('SELECT * from "%s" ORDER by time DESC LIMIT 50') % (table))
+
+    grass = "None"
+    tree = "None"
+
+    for el in result._get_series()[0]['values']:
+        if grass != el[1]:
+            grass = el[1]
+            tree = el[2]
+
+    return {"grass": grass, "tree": tree}

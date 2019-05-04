@@ -30,8 +30,11 @@ def location():
 
     resp = {}
     resp_nokia = nokia.location_data(key)
-    resp_ericsson = ericsson.location_data()
-    resp['air_quality'] = resp_ericsson
+    resp_pollen = ericsson.location_pollen_data()
+    resp_pollution = ericsson.location_pollution_data()
+    resp['pollen'] = resp_pollen
+    resp['air_quality'] = resp_pollution
+
     resp.update(resp_nokia)
 
     return jsonify(resp)

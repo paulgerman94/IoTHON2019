@@ -2,7 +2,7 @@ from influxdb import InfluxDBClient
 
 import config
 
-client = InfluxDBClient('127.0.0.1', 8086, 'root', 'root', '_internal')
+client = InfluxDBClient(config.influx_host, config.influx_port, config.influx_user, config.influx_password, config.influx_schema)
 
 
 def location_data(key):
@@ -27,4 +27,4 @@ def location_data(key):
     humidity = humidity / number
     temperature = temperature / number
 
-    return {"humidity": humidity, "temperature": temperature, "raw": result._get_series()[0]}
+    return {"humidity": humidity, "temperature": temperature}

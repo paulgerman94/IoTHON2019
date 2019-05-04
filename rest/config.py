@@ -9,3 +9,11 @@ locations = {
         'table': 'ruuvi_measurements'
     }
 }
+
+influx_host = '127.0.0.1'
+influx_port = 8086
+influx_user = 'root'
+influx_password = 'root'
+influx_schema = '_internal'
+
+ericsson = 'ericsson'

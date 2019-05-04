@@ -98,6 +98,22 @@ class HomePageState extends State<HomePage> {
                               lat: 60.1583809,
                               long: 24.7338766)));
                 }),
+            //Tapiola
+            new Marker(
+                markerId: MarkerId('tapiola'),
+                position: LatLng(60.1776236, 24.7915729),
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueRed),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailsPage(
+                              placeName: "Tapiola",
+                              lat: 60.1776236,
+                              long: 24.7915729)));
+                }),
+
             //Espoon Keskus
             new Marker(
                 markerId: MarkerId('espoonkeskus'),
@@ -192,6 +208,16 @@ class HomePageState extends State<HomePage> {
                     60.1841379,
                     24.8125743,
                     "Otaniemi"),
+              ),
+              //Tapiola
+              SizedBox(width: 10.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: _boxes(
+                    "https://g.otcdn.com/imglib/hotelfotos/8/050/hotel-sokos-tapiola-garden-espoo-060.jpg",
+                    60.1776236,
+                    24.7915729,
+                    "Tapiola"),
               ),
               //Espoon Keskus
               SizedBox(width: 10.0),

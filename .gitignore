@@ -209,7 +209,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+rest/lib/
 lib64/
 parts/
 sdist/

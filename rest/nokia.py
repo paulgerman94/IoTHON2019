@@ -33,7 +33,7 @@ def location_data(key):
     return {"humidity": humidity, "temperature": temperature}
 
 
-def location_all_data(place, resp_ericsson):
+def location_all_data(place, resp_pollution, resp_pollen):
     if place not in config.locations:
         # Exception("Fuck you! You fucked it up, asshole!")
         place = 'default'
@@ -51,6 +51,6 @@ def location_all_data(place, resp_ericsson):
         humidity = el[-5]
         temperature = el[-1]
         date = date + timedelta(minutes=30)
-        result.append({"humidity": humidity, "temperature": temperature, "air_quality": resp_ericsson, "time": date.strftime('%H:%M')})
+        result.append({"humidity": humidity, "temperature": temperature, "air_quality": resp_pollution, "pollen": resp_pollen, "time": date.strftime('%H:%M')})
 
     return result

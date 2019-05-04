@@ -7,13 +7,14 @@ client = InfluxDBClient('127.0.0.1', 8086, 'root', 'root', '_internal')
 
 def location_data(key):
     if key not in config.locations:
-        Exception("Fuck you! You fucked it up, asshole!")
+        # Exception("Fuck you! You fucked it up, asshole!")
+        key = 'default'
 
-    location = config.locations[str(key)]
+    location = config.locations[key]
     database = location['database']
     table = location['table']
     client.switch_database(database)
-    result = client.query(('SELECT * from "%s" ORDER by time DESC LIMIT 20') % (table))
+    result = client.query(('SELECT * from "%s" ORDER by time DESC LIMIT 50') % (table))
 
     humidity = 0.0
     temperature = 0.0
@@ -26,4 +27,4 @@ def location_data(key):
     humidity = humidity / number
     temperature = temperature / number
 
-    return {"humidity": humidity, "temperature": temperature}
+    return {"humidity": humidity, "temperature": temperature, "raw": result._get_series()[0]}

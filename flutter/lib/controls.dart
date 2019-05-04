@@ -28,8 +28,7 @@ class ControlsPageState extends State<ControlsPage> {
         leading: IconButton(
             icon: Icon(FontAwesomeIcons.arrowLeft),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.pop(context);
             }), //IconButton
         title: Text("Information"),
       ), //AppBar

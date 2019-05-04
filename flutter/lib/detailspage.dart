@@ -69,8 +69,7 @@ class DetailsPageState extends State<DetailsPage> {
         leading: IconButton(
             icon: Icon(FontAwesomeIcons.arrowLeft),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.pop(context);
             }), //IconButton
         title: Text(placeName),
       ), //AppBar

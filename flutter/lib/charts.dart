@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:iothon2019/homepage.dart';
 import 'package:iothon2019/chart.dart';
 //Date
 
@@ -93,7 +92,7 @@ class ChartsPageState extends State<ChartsPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => MedicalProfileWidget()));*/
-                Navigator.of(context).pop();
+                Navigator.pop(context);
                 _incrementTab(1);
               }
           ),
@@ -110,7 +109,7 @@ class ChartsPageState extends State<ChartsPage> {
               ),
               title: new Text("Check Ups"),
               onTap: (){
-                Navigator.of(context).pop();
+                Navigator.pop(context);
 //                Navigator.push(
 //                    context,
 //                    MaterialPageRoute(builder: (context) => SecondaryPage("Check Ups")));
@@ -131,7 +130,7 @@ class ChartsPageState extends State<ChartsPage> {
               ),
               title: new Text("Appointments"),
               onTap: (){
-                Navigator.of(context).pop();
+                Navigator.pop(context);
 //                Navigator.push(
 //                    context,
 ////                    MaterialPageRoute(builder: (context) => CheckUpsWidget()));
@@ -151,7 +150,7 @@ class ChartsPageState extends State<ChartsPage> {
               ),
               title: new Text("Vaccinations"),
               onTap: (){
-                Navigator.of(context).pop();
+                Navigator.pop(context);
 //                Navigator.push(
 //                    context,
 ////                    MaterialPageRoute(builder: (context) => CheckUpsWidget()));
@@ -171,7 +170,7 @@ class ChartsPageState extends State<ChartsPage> {
               ),
               title: new Text("Prescription"),
               onTap: (){
-                Navigator.of(context).pop();
+                Navigator.pop(context);
 //                Navigator.push(
 //                    context,
 ////                    MaterialPageRoute(builder: (context) => CheckUpsWidget()));
@@ -190,8 +189,7 @@ class ChartsPageState extends State<ChartsPage> {
         leading: IconButton(
             icon: Icon(FontAwesomeIcons.arrowLeft),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.pop(context);
             }), //IconButton
         title: Text(_title[_cIndex]),
       ), //AppBar,

@@ -174,7 +174,7 @@ class HomePageState extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: _boxes(
-                    "https://i.ytimg.com/vi/6zimp87Avvc/maxresdefault.jpg",
+                    "https://t-lehti.fi/wp-content/uploads/2012/02/otaniemiinnovaatiokeskittyma.jpg",
                     60.1841379,
                     24.8125743,
                     "Otaniemi"),
@@ -248,13 +248,24 @@ class HomePageState extends State<HomePage> {
         Padding(
           padding: const EdgeInsets.only(left: 25.0, right: 25.0),
           child: Container(
-            child: Text(
-              placeName,
-              style: TextStyle(
-                  color: Color(0xff3200ee),
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
-            ),
+            child:
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text(
+                  placeName,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "Espoo",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 24.0),
+                ),
+              ]),
           ),
         ),
       ],

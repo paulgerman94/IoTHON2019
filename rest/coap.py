@@ -72,3 +72,29 @@ async def coap_switch_light():
     except Exception as e:
         print('Failed to fetch resource:')
         print(e)
+
+
+async def coap_switch_alarm():
+
+    protocol = await Context.create_client_context()
+
+    request = Message(code=GET, uri=addr + '/alarm')
+
+    try:
+        response = await protocol.request(request).response
+    except Exception as e:
+        print('Failed to fetch resource:')
+        print(e)
+
+    if "on" == response.payload.decode("utf-8"):
+        payload = b'off'
+    else:
+        payload = b'on'
+
+    request = Message(code=PUT, uri=addr + '/alarm', payload=payload)
+
+    try:
+        response = await protocol.request(request).response
+    except Exception as e:
+        print('Failed to fetch resource:')
+        print(e)

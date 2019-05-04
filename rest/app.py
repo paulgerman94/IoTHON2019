@@ -55,6 +55,11 @@ def switch_light():
     loop.run_until_complete(coap.coap_switch_light())
     return ''
 
+@app.route('/switch_alarm', methods = ['PUT'])
+def switch_alarm():
+    loop.run_until_complete(coap.coap_switch_alarm())
+    return ''
+
 loop.run_until_complete(coap.coap_service())
 
 if __name__ == '__main__':

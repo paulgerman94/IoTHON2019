@@ -39,6 +39,8 @@ class ControlsPageState extends State<ControlsPage> {
         width: MediaQuery.of(context).size.width,
         child: ListView(scrollDirection: Axis.vertical, children: <Widget>[
           _pollution(context),
+          _discount(context),
+          _brightness(context),
         ]),
       ), // <Widget>[]//Scaffold
     );
@@ -70,58 +72,54 @@ class ControlsPageState extends State<ControlsPage> {
               "Pollution",
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 32.0,
+                  fontSize: 28.0,
                   fontWeight: FontWeight.bold),
             ),
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  "Categorie",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "Allowed",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ]),
-        ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Categorie",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "Allowed",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ]),
+            ),
 
             // Zero switcher row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Text(
-                          "0",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          "(blue sticker)",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18.0),
-                        ),
-                      ),
-                    ]
-                ),
+                Row(children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      "0",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      "(blue sticker)",
+                      style: TextStyle(color: Colors.black, fontSize: 18.0),
+                    ),
+                  ),
+                ]),
                 Padding(
                   padding: const EdgeInsets.only(right: 20.0),
                   child: new Switch(
@@ -141,29 +139,25 @@ class ControlsPageState extends State<ControlsPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        "Eco",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold),
-                      ),
+                Row(children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      "Eco",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Text(
-                        "(green & blue sticker)",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18.0),
-                      ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      "(green & blue sticker)",
+                      style: TextStyle(color: Colors.black, fontSize: 18.0),
                     ),
-                  ]),
-
+                  ),
+                ]),
                 Padding(
                   padding: const EdgeInsets.only(right: 20.0),
                   child: new Switch(
@@ -183,28 +177,25 @@ class ControlsPageState extends State<ControlsPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        "B",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold),
-                      ),
+                Row(children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      "B",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Text(
-                        "(yellow sticker)",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18.0),
-                      ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      "(yellow sticker)",
+                      style: TextStyle(color: Colors.black, fontSize: 18.0),
                     ),
-                  ]),
+                  ),
+                ]),
                 Padding(
                   padding: const EdgeInsets.only(right: 20.0),
                   child: new Switch(
@@ -224,29 +215,25 @@ class ControlsPageState extends State<ControlsPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        "C",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold),
-                      ),
+                Row(children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      "C",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Text(
-                        "(green sticker)",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18.0),
-                      ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      "(green sticker)",
+                      style: TextStyle(color: Colors.black, fontSize: 18.0),
                     ),
-                  ]),
-
+                  ),
+                ]),
                 Padding(
                   padding: const EdgeInsets.only(right: 20.0),
                   child: new Switch(
@@ -264,5 +251,121 @@ class ControlsPageState extends State<ControlsPage> {
             ),
           ],
         ));
+  }
+
+// ############ Public Transport discount ############
+  double _sliderDiscountValue = 0.0;
+
+  Widget _discount(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: _discountBox(),
+    );
+  }
+
+  //Brightness Box
+  Widget _discountBox() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Text(
+              "Public Transport Discount",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.bold),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Text(
+                      'Value: ${(_sliderDiscountValue * 100).round()}' + " %",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    new Slider(
+                      value: _sliderDiscountValue,
+                      onChanged: (double value) {
+                        setState(() {
+                          _sliderDiscountValue = value;
+                        });
+                      },
+                      divisions: 100,
+                    ),
+                  ]),
+            ),
+          ]),
+    );
+  }
+
+// ############ Brightness ############
+
+  double _sliderBrightnessValue = 0.0;
+
+  Widget _brightness(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: _brightnessBox(),
+    );
+  }
+
+  //Brightness Box
+  Widget _brightnessBox() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Text(
+              "Light poles brightness",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.bold),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Text(
+                      'Value: ${(_sliderBrightnessValue * 100).round()}' + " %",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    new Slider(
+                      value: _sliderBrightnessValue,
+                      onChanged: (double value) {
+                        setState(() {
+                          _sliderBrightnessValue = value;
+                        });
+                      },
+                      divisions: 100,
+                    ),
+                  ]),
+            ),
+            RaisedButton(
+              elevation: 4.0,
+              onPressed: () {},
+              textColor: Colors.white,
+              padding: const EdgeInsets.all(0.0),
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: Colors.blue,
+                ),
+                padding: const EdgeInsets.all(10.0),
+                child: Text('     SAVE     '),
+              ),
+            ),
+          ]),
+    );
   }
 }

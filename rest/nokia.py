@@ -2,7 +2,7 @@ from influxdb import InfluxDBClient
 
 import config
 
-client = InfluxDBClient('192.168.1.200', 8086, 'root', 'root', '_internal')
+client = InfluxDBClient('127.0.0.1', 8086, 'root', 'root', '_internal')
 
 
 def location_data(key):
@@ -10,8 +10,10 @@ def location_data(key):
         Exception("Fuck you! You fucked it up, asshole!")
 
     location = config.locations[str(key)]
-    client.switch_database(location['database'])
-    result = client.query(('SELECT * from "%s" ORDER by time DESC LIMIT 20') % (location['table']))
+    database = location['database']
+    table = location['table']
+    client.switch_database(database)
+    result = client.query(('SELECT * from "%s" ORDER by time DESC LIMIT 20') % (table))
 
     humidity = 0.0
     temperature = 0.0

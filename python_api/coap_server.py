@@ -102,6 +102,7 @@ def main():
     root.add_resource(('.well-known', 'core'),
                       resource.WKCResource(root.get_resources_as_linkheader))
     root.add_resource(('airquality',), AirQualityResource())
+    root.add_resource(('pollen',), PollenResource())
     root.add_resource(('led',), LightControl())
     root.add_resource(('alarm',), AlarmControl())
 

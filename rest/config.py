@@ -18,3 +18,4 @@ influx_schema = '_internal'
 
 ericsson_schema = 'ericsson'
 ericsson_air_pollution = 'air_pollution'
+ericsson_air_pollen = 'air_pollen'

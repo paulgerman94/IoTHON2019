@@ -13,7 +13,7 @@ def init_influx():
                             config.influx_schema)
     client.switch_database(config.ericsson_schema)
     # change this shitty logic
-    #client.drop_database(config.ericsson_pollution_db)
+    # client.drop_database(config.ericsson_pollution_db)
 
     # print("Create database: " + config.ericsson_pollution_db)
     # client.create_database(config.ericsson_pollution_db)
@@ -56,13 +56,22 @@ def save_air_pollen(data):
 
 def prepare_air_pollen_json(data):
     date = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+    grass = data['data']['types']['grass']['index']['category']
+    if grass is None:
+        grass = "None"
+
+    tree = data['data']['types']['tree']['index']['category']
+    if tree is None:
+        tree = "None"
+
     json_body = [
         {
             "measurement": config.ericsson_air_pollen,
             "time": date,
             "fields": {
-                "grass": data['data']['types']['grass']['index']['category'],
-                "tree": data['data']['types']['tree']['index']['category'],
+                "grass": grass,
+                "tree": tree,
             }
         }
     ]

@@ -1,0 +1,72 @@
+import datetime
+import logging
+
+import asyncio
+import urllib.request
+
+import aiocoap.resource as resource
+import aiocoap
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(11, GPIO.OUT)
+
+
+class AirQualityResource(resource.Resource):
+    """Example resource which supports the GET and PUT methods. It sends large
+    responses, which trigger blockwise transfer."""
+
+    def __init__(self):
+        super().__init__()
+
+    async def render_get(self, request):
+        url = "https://api.breezometer.com/air-quality/v2/current-conditions?lat=" + str(list(request.opt.option_list())[1]).split("=")[1] + "&lon=" + str(list(request.opt.option_list())[2]).split("=")[1] + "&key=bf1f7b91ee47460a9ceef6d9ef11132a&features=breezometer_aqi,dominant_pollutant_concentrations,sources_and_effects"
+
+        print(url)
+        contents = urllib.request.urlopen(url).read()
+
+        return aiocoap.Message(payload=contents)
+
+
+class LightControl(resource.Resource):
+    def __init__(self):
+        self.light_on = False
+        super().__init__()
+        print("initializing!")
+
+    async def render_put(self, request):
+        print("ana are multe mere")
+        if request.payload == b"on":
+            print("Light on!")
+            self.light_on = True
+            GPIO.output(11, GPIO.HIGH)
+
+        else:
+            print("Light off!")
+            GPIO.output(11, GPIO.LOW)
+            self.light_on = False
+
+        return aiocoap.Message(code=aiocoap.CHANGED, payload=request.payload)
+
+# logging setup
+
+logging.basicConfig(level=logging.INFO)
+logging.getLogger("coap-server").setLevel(logging.DEBUG)
+
+
+def main():
+    # Resource tree creation
+    root = resource.Site()
+
+    root.add_resource(('.well-known', 'core'),
+                      resource.WKCResource(root.get_resources_as_linkheader))
+    root.add_resource(('airquality',), AirQualityResource())
+    root.add_resource(('led',), LightControl())
+
+    asyncio.Task(aiocoap.Context.create_server_context(root))
+
+    asyncio.get_event_loop().run_forever()
+
+
+if __name__ == "__main__":
+    main()

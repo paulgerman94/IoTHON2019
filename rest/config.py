@@ -16,4 +16,5 @@ influx_user = 'root'
 influx_password = 'root'
 influx_schema = '_internal'
 
-ericsson = 'ericsson'
+ericsson_schema = 'ericsson'
+ericsson_air_pollution = 'air_pollution'

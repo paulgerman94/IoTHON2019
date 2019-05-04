@@ -1,5 +1,8 @@
+import asyncio
 import json
 import uuid
+import coap
+import time
 
 from flask import Flask
 from flask import jsonify
@@ -9,6 +12,7 @@ import ericsson
 import nokia
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def hello_world():
@@ -31,6 +35,9 @@ def location():
     resp.update(resp_nokia)
 
     return jsonify(resp)
+
+
+asyncio.get_event_loop().run_until_complete(coap.coap_service())
 
 if __name__ == '__main__':
     app.run()

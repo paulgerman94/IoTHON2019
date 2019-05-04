@@ -44,8 +44,9 @@ def location():
 def all_location():
     place = request.args.get('lat')
 
-    resp_ericsson = ericsson.location_data()
-    resp = nokia.location_all_data(place, resp_ericsson)
+    resp_pollution = ericsson.location_pollution_data()
+    resp_pollen = ericsson.location_pollen_data()
+    resp = nokia.location_all_data(place, resp_pollution, resp_pollen)
 
     return jsonify(resp)
 

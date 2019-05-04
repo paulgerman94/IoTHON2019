@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:iothon2019/homepage.dart';
 import 'package:iothon2019/server/service.dart';
-//Date
 
 class DetailsPage extends StatefulWidget {
   final String placeName;
@@ -70,20 +69,19 @@ class DetailsPageState extends State<DetailsPage> {
         leading: IconButton(
             icon: Icon(FontAwesomeIcons.arrowLeft),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.pop(context);
             }), //IconButton
         title: Text(placeName),
       ), //AppBar
 
-      body: Stack(
-        children: <Widget>[
-          ListView(scrollDirection: Axis.vertical, children: <Widget>[
-            _weather(context),
-            _humidity(context),
-            _airQuality(context)
-          ]),
-        ], // <Widget>[]
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: ListView(scrollDirection: Axis.vertical, children: <Widget>[
+          _weather(context),
+          _humidity(context),
+          _airQuality(context)
+        ]),
       ), //Scaffold
     );
   }

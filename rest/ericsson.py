@@ -47,6 +47,28 @@ def prepare_air_pollution_json(data):
     ]
     return json_body
 
+
+def save_air_pollen(data):
+    json_body = prepare_air_pollen_json(data)
+    # print("Write points: {0}".format(json_body))
+    client.write_points(json_body)
+
+
+def prepare_air_pollen_json(data):
+    date = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%dT%H:%M:%SZ')
+    json_body = [
+        {
+            "measurement": config.ericsson_air_pollen,
+            "time": date,
+            "fields": {
+                "grass": data['data']['types']['grass']['index']['category'],
+                "tree": data['data']['types']['tree']['index']['category'],
+            }
+        }
+    ]
+    return json_body
+
+
 def location_data():
     database = config.ericsson_schema
     table = config.ericsson_air_pollution

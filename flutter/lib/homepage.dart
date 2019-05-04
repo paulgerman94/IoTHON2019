@@ -1,9 +1,9 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:iothon2019/charts.dart';
-import 'package:iothon2019/controls.dart';
 import 'package:iothon2019/detailspage.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,14 +27,15 @@ class HomePageState extends State<HomePage> {
         child: Scaffold(
           appBar: AppBar(
             //IconButton
-            title: Text("Otaniemi"),
+            title: Text("City Manager"),
             actions: <Widget>[
               IconButton(
                   icon: Icon(FontAwesomeIcons.bars),
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChartsPage("Otaniemi")),
+                      MaterialPageRoute(
+                          builder: (context) => ChartsPage("Otaniemi")),
                     );
                   }), // IconButton
             ], // <Widget>[]
@@ -129,6 +130,7 @@ class HomePageState extends State<HomePage> {
                 }),
 
             //PLACES
+            //Otaniemi Places
             //Aalto University
             new Marker(
                 markerId: MarkerId('aaltoyliopisto'),
@@ -173,6 +175,69 @@ class HomePageState extends State<HomePage> {
                               placeName: "Uni Sport Gym",
                               lat: 60.18318,
                               long: 24.8282988)));
+                }),
+            //Alepa
+            new Marker(
+                markerId: MarkerId('alepa'),
+                position: LatLng(60.1841379, 24.8125743),
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueBlue),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailsPage(
+                              placeName: "Alepa",
+                              lat: 60.1841379,
+                              long: 24.8125743)));
+                }),
+
+            //Tapiola Places
+            //Park
+            new Marker(
+                markerId: MarkerId('silkkiniittypark'),
+                position: LatLng(60.1780917, 24.8020868),
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueBlue),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailsPage(
+                              placeName: "Silkkiniitty Park",
+                              lat: 60.1780917,
+                              long: 24.8020868)));
+                }),
+            //Highschool
+            new Marker(
+                markerId: MarkerId('tapiolahighschool'),
+                position: LatLng(60.1780917, 24.8020868),
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueBlue),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailsPage(
+                              placeName: "Tapiola High School",
+                              lat: 60.1780917,
+                              long: 24.8020868)));
+                }),
+
+            //Tapiola church
+            new Marker(
+                markerId: MarkerId('tapiolachurch'),
+                position: LatLng(60.1795507, 24.8048946),
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueBlue),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailsPage(
+                              placeName: "Tapiola Church",
+                              lat: 60.1795507,
+                              long: 24.8048946)));
                 }),
           },
         ));

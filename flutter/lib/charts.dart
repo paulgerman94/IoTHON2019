@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:iothon2019/homepage.dart';
 import 'package:iothon2019/chart.dart';
+import 'package:iothon2019/controls.dart';
+
 //Date
 
 class ChartsPage extends StatefulWidget {
@@ -21,16 +22,6 @@ class ChartsPageState extends State<ChartsPage> {
     "Tapiola",
     "Espoon Keskus",
     "Matinkylä"
-  ];
-
-  List<Widget> _children = [
-    Container(),
-    Container(),
-    Container(),
-    Container(),
-    Container(),
-    Container(),
-    Container(),
   ];
 
   @override
@@ -89,11 +80,7 @@ class ChartsPageState extends State<ChartsPage> {
               ),
               title: new Text("Medical Profile"),
               onTap: () {
-                /* Navigator.of(context).pop();
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MedicalProfileWidget()));*/
-                Navigator.of(context).pop();
+                Navigator.pop(context);
                 _incrementTab(1);
               }
           ),
@@ -110,11 +97,7 @@ class ChartsPageState extends State<ChartsPage> {
               ),
               title: new Text("Check Ups"),
               onTap: (){
-                Navigator.of(context).pop();
-//                Navigator.push(
-//                    context,
-//                    MaterialPageRoute(builder: (context) => SecondaryPage("Check Ups")));
-//                //                   MaterialPageRoute(builder: (context) => Home()));
+                Navigator.pop(context);
 
               }
           ),
@@ -131,11 +114,7 @@ class ChartsPageState extends State<ChartsPage> {
               ),
               title: new Text("Appointments"),
               onTap: (){
-                Navigator.of(context).pop();
-//                Navigator.push(
-//                    context,
-////                    MaterialPageRoute(builder: (context) => CheckUpsWidget()));
-//                    MaterialPageRoute(builder: (context) => SecondaryPage("Appointments")));
+                Navigator.pop(context);
               }
           ),
           new ListTile(
@@ -151,11 +130,7 @@ class ChartsPageState extends State<ChartsPage> {
               ),
               title: new Text("Vaccinations"),
               onTap: (){
-                Navigator.of(context).pop();
-//                Navigator.push(
-//                    context,
-////                    MaterialPageRoute(builder: (context) => CheckUpsWidget()));
-//                    MaterialPageRoute(builder: (context) => SecondaryPage("Vaccinations")));
+                Navigator.pop(context);
               }
           ),
           new ListTile(
@@ -171,11 +146,7 @@ class ChartsPageState extends State<ChartsPage> {
               ),
               title: new Text("Prescription"),
               onTap: (){
-                Navigator.of(context).pop();
-//                Navigator.push(
-//                    context,
-////                    MaterialPageRoute(builder: (context) => CheckUpsWidget()));
-//                    MaterialPageRoute(builder: (context) => SecondaryPage("Prescription")));
+                Navigator.pop(context);
               }
           ),
         ],
@@ -190,10 +161,19 @@ class ChartsPageState extends State<ChartsPage> {
         leading: IconButton(
             icon: Icon(FontAwesomeIcons.arrowLeft),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.pop(context);
             }), //IconButton
         title: Text(_title[_cIndex]),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(FontAwesomeIcons.cogs),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ControlsPage()),
+                );
+              }), // IconButton
+        ], // <Widget>[]
       ), //AppBar,
       drawer:  getDrawer(),
       body: new ChartWidget(),

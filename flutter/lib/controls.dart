@@ -80,7 +80,7 @@ class ControlsPageState extends State<ControlsPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      "Categorie",
+                      "Vehicle type",
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 22.0,

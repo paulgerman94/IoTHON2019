@@ -34,4 +34,16 @@ class ServiceAPI {
       throw Exception('It fails. fuck you!');
     }
   }
+
+  Future<void> switchLight() async {
+    //Uri to bring the data from a Lightpole
+    var uri = Uri.http(iothonHost, '/switch_light');
+    await http.put(uri);
+  }
+
+  Future<void> switchAlarm() async {
+    //Uri to bring the data from a Lightpole
+    var uri = Uri.http(iothonHost, '/switch_alarm');
+    await http.put(uri);
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iothon2019/server/service.dart';
 //Date
 
 class ControlsPage extends StatefulWidget {
@@ -75,7 +76,7 @@ class ControlsPageState extends State<ControlsPage> {
                   fontWeight: FontWeight.bold),
             ),
             Padding(
-              padding: const EdgeInsets.only(left:10.0, right: 10.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -92,6 +93,7 @@ class ControlsPageState extends State<ControlsPage> {
                       setState(() {
                         _alarm_switched = value;
                       });
+                      ServiceAPI().switchAlarm();
                     },
                     activeTrackColor: Colors.red,
                     activeColor: Colors.red,
@@ -152,6 +154,7 @@ class ControlsPageState extends State<ControlsPage> {
                       setState(() {
                         _zero_switched = value;
                       });
+                      ServiceAPI().switchLight();
                     },
                     activeTrackColor: Colors.lightBlueAccent,
                     activeColor: Colors.blue,
@@ -375,19 +378,6 @@ class ControlsPageState extends State<ControlsPage> {
                       divisions: 100,
                     ),
                   ]),
-            ),
-            RaisedButton(
-              elevation: 4.0,
-              onPressed: () {},
-              textColor: Colors.white,
-              padding: const EdgeInsets.all(0.0),
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.blue,
-                ),
-                padding: const EdgeInsets.all(10.0),
-                child: Text('     SAVE     '),
-              ),
             ),
           ]),
     );

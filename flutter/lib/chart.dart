@@ -131,7 +131,7 @@ class ChartWidgetState extends State<ChartWidget> {
               width: 350,
               height: 250,
               child: new charts.BarChart(
-                _createTemperatureSeries(snapshot.data),
+                _createTemperatureSeries(snapshot.data.sublist(0,5)),
                 animate: false,
               ),
             );
@@ -158,7 +158,7 @@ class ChartWidgetState extends State<ChartWidget> {
               width: 350,
               height: 250,
               child: new charts.BarChart(
-                _createPollenSeries(snapshot.data),
+                _createPollenSeries(snapshot.data.sublist(0,5)),
                 animate: false,
               ),
             );
@@ -185,7 +185,7 @@ class ChartWidgetState extends State<ChartWidget> {
               width: 350,
               height: 250,
               child: new charts.BarChart(
-                _createAirQualitySeries(snapshot.data),
+                _createAirQualitySeries(snapshot.data.sublist(0,5)),
                 animate: false,
               ),
             );

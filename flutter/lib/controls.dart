@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:iothon2019/homepage.dart';
+import 'package:iothon2019/server/service.dart';
 //Date
 
 class ControlsPage extends StatefulWidget {
@@ -51,6 +51,7 @@ class ControlsPageState extends State<ControlsPage> {
   bool _eco_switched = true;
   bool _b_switched = true;
   bool _c_switched = true;
+  bool _alarm_switched = false;
 
   // Pollution Layout
   Widget _pollution(BuildContext context) {
@@ -71,8 +72,34 @@ class ControlsPageState extends State<ControlsPage> {
               "Pollution",
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 28.0,
+                  fontSize: 26.0,
                   fontWeight: FontWeight.bold),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "Alarm",
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  new Switch(
+                    value: _alarm_switched,
+                    onChanged: (bool value) {
+                      setState(() {
+                        _alarm_switched = value;
+                      });
+                      ServiceAPI().switchAlarm();
+                    },
+                    activeTrackColor: Colors.red,
+                    activeColor: Colors.red,
+                  ),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -127,6 +154,7 @@ class ControlsPageState extends State<ControlsPage> {
                       setState(() {
                         _zero_switched = value;
                       });
+                      ServiceAPI().switchLight();
                     },
                     activeTrackColor: Colors.lightBlueAccent,
                     activeColor: Colors.blue,
@@ -273,7 +301,7 @@ class ControlsPageState extends State<ControlsPage> {
               "Public Transport Discount",
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 28.0,
+                  fontSize: 26.0,
                   fontWeight: FontWeight.bold),
             ),
             Padding(
@@ -325,7 +353,7 @@ class ControlsPageState extends State<ControlsPage> {
               "Light poles brightness",
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 28.0,
+                  fontSize: 26.0,
                   fontWeight: FontWeight.bold),
             ),
             Padding(
@@ -350,19 +378,6 @@ class ControlsPageState extends State<ControlsPage> {
                       divisions: 100,
                     ),
                   ]),
-            ),
-            RaisedButton(
-              elevation: 4.0,
-              onPressed: () {},
-              textColor: Colors.white,
-              padding: const EdgeInsets.all(0.0),
-              child: Container(
-                decoration: const BoxDecoration(
-                    color: Colors.blue,
-                ),
-                padding: const EdgeInsets.all(10.0),
-                child: Text('     SAVE     '),
-              ),
             ),
           ]),
     );

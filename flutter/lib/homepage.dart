@@ -57,8 +57,8 @@ class HomePageState extends State<HomePage> {
           mapType: MapType.normal,
           initialCameraPosition: CameraPosition(
               target: LatLng(
-                60.1583809,
-                24.7338766,
+                60.1776236,
+                24.7915729,
               ),
               zoom: 12),
           onMapCreated: (GoogleMapController controller) {
@@ -252,15 +252,15 @@ class HomePageState extends State<HomePage> {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              //Matinkyla
+              //Tapiola
               SizedBox(width: 10.0),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: _boxes(
-                    "https://mb.cision.com/Public/197/9422238/8e9e511f473cb815_800x800ar.jpg",
-                    60.1583809,
-                    24.7338766,
-                    "Matinkylä"),
+                    "https://g.otcdn.com/imglib/hotelfotos/8/050/hotel-sokos-tapiola-garden-espoo-060.jpg",
+                    60.1776236,
+                    24.7915729,
+                    "Tapiola"),
               ),
               //Otaniemi
               SizedBox(width: 10.0),
@@ -272,16 +272,17 @@ class HomePageState extends State<HomePage> {
                     24.8125743,
                     "Otaniemi"),
               ),
-              //Tapiola
+              //Matinkyla
               SizedBox(width: 10.0),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: _boxes(
-                    "https://g.otcdn.com/imglib/hotelfotos/8/050/hotel-sokos-tapiola-garden-espoo-060.jpg",
-                    60.1776236,
-                    24.7915729,
-                    "Tapiola"),
+                    "https://mb.cision.com/Public/197/9422238/8e9e511f473cb815_800x800ar.jpg",
+                    60.1583809,
+                    24.7338766,
+                    "Matinkylä"),
               ),
+
               //Espoon Keskus
               SizedBox(width: 10.0),
               Padding(

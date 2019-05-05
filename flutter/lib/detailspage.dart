@@ -55,7 +55,7 @@ class DetailsPageState extends State<DetailsPage> {
   }
 
   void getCurrentDate() {
-    var now = new DateTime.now().add(Duration(hours: 3));
+    var now = new DateTime.now().add(Duration(hours: 0));
     var formatter = new DateFormat('Hm');
     formattedDate = formatter.format(now);
     //print(new DateFormat.yMMMd().format(new DateTime.now()));

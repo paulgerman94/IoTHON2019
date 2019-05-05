@@ -6,45 +6,72 @@ import 'package:iothon2019/server/service.dart';
 class ChartWidget extends StatefulWidget {
   ChartWidget();
 
-  static List<charts.Series<OrdinalSales, String>> _createSampleData() {
-    final data = [
-      new OrdinalSales('10:00', 11),
-      new OrdinalSales('10:30', 13),
-      new OrdinalSales('11:00', 13),
-      new OrdinalSales('11:30', 14),
-    ];
-
-    return [
-      new charts.Series<OrdinalSales, String>(
-        id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: data,
-      )
-    ];
-  }
-
   @override
   State createState() {
-    return new ChartWidgetState(
-      _createSampleData(),
-    );
+    return new ChartWidgetState();
   }
 }
 
 class ChartWidgetState extends State<ChartWidget> {
-  final List<charts.Series> seriesList;
 
-  ChartWidgetState(this.seriesList);
-
-  List<charts.Series<LightPoles, String>> _createTemperatureSeries(List<LightPoles> data) {
+  List<charts.Series<LightPoles, String>> _createTemperatureSeries(
+      List<LightPoles> data) {
     return [
       new charts.Series<LightPoles, String>(
         id: 'Sales',
         colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (LightPoles el, _) => el.time,
         measureFn: (LightPoles el, _) => el.temperature,
+        data: data,
+      )
+    ];
+  }
+
+  List<charts.Series<LightPoles, String>> _createPollenSeries(
+      List<LightPoles> data) {
+    return [
+      new charts.Series<LightPoles, String>(
+        id: 'Sales',
+        colorFn: (LightPoles el, __) {
+          if (el.pollen.grass == "None" && el.pollen.tree == "None") {
+            return charts.MaterialPalette.blue.shadeDefault;
+          } else {
+            return charts.MaterialPalette.red.shadeDefault;
+          }
+        },
+        domainFn: (LightPoles el, _) => el.time,
+        measureFn: (LightPoles el, _) {
+          if (el.pollen.grass == "None" && el.pollen.tree == "None") {
+            return 1;
+          } else {
+            return 2;
+          }
+        },
+        data: data,
+      )
+    ];
+  }
+
+  List<charts.Series<LightPoles, String>> _createAirQualitySeries(
+      List<LightPoles> data) {
+    return [
+      new charts.Series<LightPoles, String>(
+        id: 'Sales',
+        colorFn: (LightPoles el, __) {
+          if (el.airQuality.type == "Good air quality") {
+            return charts.MaterialPalette.blue.shadeDefault;
+          } else {
+            return charts.MaterialPalette.red.shadeDefault;
+          }
+        },
+        domainFn: (LightPoles el, _) => el.time,
+        measureFn: (LightPoles el, _) {
+          if (el.airQuality.type == "Good air quality") {
+            return 1;
+          } else {
+            return 2;
+          }
+        },
         data: data,
       )
     ];
@@ -95,25 +122,78 @@ class ChartWidgetState extends State<ChartWidget> {
       ),
       Center(
           child: FutureBuilder<List<LightPoles>>(
-            future: getAllLocationData(),
-            // a previously-obtained Future<String> or null
-            builder: (BuildContext context,
-                AsyncSnapshot<List<LightPoles>> snapshot) {
-              if (snapshot.hasData && snapshot.data != null) {
-
-                return Container(
-                  width: 350,
-                  height: 250,
-                  child: new charts.BarChart(
-                    _createTemperatureSeries(snapshot.data),
-                    animate: false,
-                  ),
-                );
-              } else {
-              return Container();
-              }
-            },
-          )),
+        future: getAllLocationData(),
+        // a previously-obtained Future<String> or null
+        builder:
+            (BuildContext context, AsyncSnapshot<List<LightPoles>> snapshot) {
+          if (snapshot.hasData && snapshot.data != null) {
+            return Container(
+              width: 350,
+              height: 250,
+              child: new charts.BarChart(
+                _createTemperatureSeries(snapshot.data.sublist(0,5)),
+                animate: false,
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      )),
+      Center(
+        child: Text(
+          "Pollen",
+          style: TextStyle(
+              color: Colors.black, fontSize: 26.0, fontWeight: FontWeight.bold),
+        ),
+      ),
+      Center(
+          child: FutureBuilder<List<LightPoles>>(
+        future: getAllLocationData(),
+        // a previously-obtained Future<String> or null
+        builder:
+            (BuildContext context, AsyncSnapshot<List<LightPoles>> snapshot) {
+          if (snapshot.hasData && snapshot.data != null) {
+            return Container(
+              width: 350,
+              height: 250,
+              child: new charts.BarChart(
+                _createPollenSeries(snapshot.data.sublist(0,5)),
+                animate: false,
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      )),
+      Center(
+        child: Text(
+          "Air Quality",
+          style: TextStyle(
+              color: Colors.black, fontSize: 26.0, fontWeight: FontWeight.bold),
+        ),
+      ),
+      Center(
+          child: FutureBuilder<List<LightPoles>>(
+        future: getAllLocationData(),
+        // a previously-obtained Future<String> or null
+        builder:
+            (BuildContext context, AsyncSnapshot<List<LightPoles>> snapshot) {
+          if (snapshot.hasData && snapshot.data != null) {
+            return Container(
+              width: 350,
+              height: 250,
+              child: new charts.BarChart(
+                _createAirQualitySeries(snapshot.data.sublist(0,5)),
+                animate: false,
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      )),
     ]);
   }
 }

@@ -69,7 +69,7 @@ class HomePageState extends State<HomePage> {
             //Otaniemi
             new Marker(
                 markerId: MarkerId('otaniemi'),
-                position: LatLng(60.1841379, 24.8125743),
+                position: LatLng(60.1841388,24.821329),
                 icon: BitmapDescriptor.defaultMarkerWithHue(
                   BitmapDescriptor.hueRed,
                 ),
@@ -268,8 +268,8 @@ class HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: _boxes(
                     "https://t-lehti.fi/wp-content/uploads/2012/02/otaniemiinnovaatiokeskittyma.jpg",
-                    60.1841379,
-                    24.8125743,
+                    60.1841388,
+                    24.821329,
                     "Otaniemi"),
               ),
               //Matinkyla

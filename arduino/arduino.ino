@@ -1,51 +1,66 @@
 #include <Wire.h>
 #include "Qwiic_LED_Stick.h"
 
-String inputString = "";         // a String to hold incoming data
-bool stringComplete = false;  // whether the string is complete
+const byte numChars = 32;
+char receivedChars[numChars];
 LED LEDStick;
 
+boolean newData = false;
+
 void setup() {
-  // initialize serial:
-  Wire.begin();
+    Wire.begin();
   Serial.begin(9600);
   LEDStick.begin();
-  // reserve 200 bytes for the inputString:
-  inputString.reserve(200);
 }
 
 void loop() {
-  // print the string when a newline arrives:
-  if (stringComplete) {
-    Serial.println(inputString);
-    //TODO
-    
-//    int command = inputString.toInt();
-//    int led = command / 1000;
-//    int red = command % 1000;
-//    LEDStick.setLEDColor(led, red, 255-red, 0);
-    
-    // clear the string:
-    inputString = "";
-    stringComplete = false;
-  }
+    recvWithStartEndMarkers();
+    showNewData();
 }
 
-/*
-  SerialEvent occurs whenever a new data comes in the hardware serial RX. This
-  routine is run between each time loop() runs, so using delay inside loop can
-  delay response. Multiple bytes of data may be available.
-*/
-void serialEvent() {
-  while (Serial.available()) {
-    // get the new byte:
-    char inChar = (char)Serial.read();
-    // add it to the inputString:
-    inputString += inChar;
-    // if the incoming character is a newline, set a flag so the main loop can
-    // do something about it:
-    if (inChar == '\n') {
-      stringComplete = true;
+void recvWithStartEndMarkers() {
+    static boolean recvInProgress = false;
+    static byte ndx = 0;
+    char startMarker = '<';
+    char endMarker = '>';
+    char rc;
+ 
+    while (Serial.available() > 0 && newData == false) {
+        rc = Serial.read();
+
+        if (recvInProgress == true) {
+            if (rc != endMarker) {
+                receivedChars[ndx] = rc;
+                ndx++;
+                if (ndx >= numChars) {
+                    ndx = numChars - 1;
+                }
+            }
+            else {
+                receivedChars[ndx] = '\0'; // terminate the string
+                recvInProgress = false;
+                ndx = 0;
+                newData = true;
+            }
+        }
+
+        else if (rc == startMarker) {
+            recvInProgress = true;
+        }
     }
-  }
+}
+
+void showNewData() {
+    if (newData == true) {
+        
+        Serial.println(receivedChars);
+        Serial.println("ok");
+        String str(receivedChars);
+        int command = str.toInt();
+        int led = command / 1000;
+        int red = command % 1000;
+        Serial.println(led);
+        LEDStick.setLEDColor(led, red, 255-red, 0);
+        newData = false;
+    }
 }
